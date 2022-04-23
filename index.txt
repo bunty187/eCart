@@ -1,0 +1,4 @@
+JWT_SECRET=Abarakadabra
+MONGODB_URI_LOCAL=mongodb://localhost/eCart
+MONGODB_URI=mongodb+srv://mern-eCart:H@rry2603@cluster0.q0b7m.mongodb.net/mern-eCart?retryWrites=true&w=majority
+PAYPAL_CLIENT_ID=AbUoSpZ9fjUnvuzMnTnY5XrGYZzsm9dmjEsVhIBhu32ZrKoI9ROI9bT5FKMBqFKUljSO6oMBBnWjIISr
