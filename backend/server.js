@@ -8,24 +8,24 @@ import userRouter from './routes/userRoutes.js';
 import orderRouter from "./routes/orderRoutes.js";
 dotenv.config();
 
-// mongoose.connect(process.env.MONGODB_URI)
-// .then(()=>{
-//     console.log("Connect to database")
-// })
-// .catch((err)=>{
-//     console.log(err.message);
-// })
+mongoose.connect(process.env.MONGODB_URI)
+.then(()=>{
+    console.log("Connect to database")
+})
+.catch((err)=>{
+    console.log(err.message);
+})
 
-mongoose.connect('mongodb://localhost/eCart', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// mongoose.connect( process.env.MONGODB_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
 
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database Connected");
-});
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error:"));
+// db.once("open", () => {
+//     console.log("Database Connected");
+// });
 
 const app = express();
 
