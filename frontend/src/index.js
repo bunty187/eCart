@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
-import {PayPalScriptProvider} from '@paypal/react-paypal-js';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { StoreProvider } from './store';
 
 ReactDOM.render(
@@ -13,7 +13,7 @@ ReactDOM.render(
     <StoreProvider>
       <HelmetProvider>
         <PayPalScriptProvider deferLoading={true}>
-        <App />
+          <App />
         </PayPalScriptProvider>
       </HelmetProvider>
     </StoreProvider>

@@ -1,17 +1,19 @@
+
 import React, { useContext, useEffect, useReducer } from 'react';
+import axios from 'axios';
+import { Store } from '../store';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
-import CheckoutSteps from '../components/CheckoutSteps';
-import { Store } from '../store';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import axios from 'axios';
+import CheckoutSteps from '../components/CheckoutSteps';
 import { toast } from 'react-toastify';
-import LoadingBox from '../components/LoadingBox';
 import { getError } from '../utilies';
+import LoadingBox from '../components/LoadingBox';
+
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,10 +28,11 @@ const reducer = (state, action) => {
     }
 };
 
-export default function PlaceOrderScreen() {
+
+export default function PlaceOrderScreenView() {
     const navigate = useNavigate();
-    const [{ loading }, dispatch] = useReducer(reducer, {
-        loading: false,
+    const [{loading},dispatch]=useReducer(reducer,{
+        loading:false,
     });
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { cart, userInfo } = state;
@@ -72,12 +75,12 @@ export default function PlaceOrderScreen() {
             toast.error(getError(err));
         }
     };
-
     useEffect(() => {
         if (!cart.paymentMethod) {
             navigate('/payment');
         }
     }, [cart, navigate]);
+
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
@@ -178,5 +181,6 @@ export default function PlaceOrderScreen() {
                 </Col>
             </Row>
         </div>
-    );
+    )
 }
+

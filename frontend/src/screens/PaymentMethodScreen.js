@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async';
-import { useNavigate } from 'react-router';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Store } from '../store';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function PaymentMethodScreen() {
     const navigate = useNavigate();
@@ -14,9 +15,11 @@ export default function PaymentMethodScreen() {
             shippingAddress, paymentMethod
         },
     } = state;
+
     const [paymentMethodName, setPaymentMethod] = useState(
         paymentMethod || 'PayPal'
     );
+
     useEffect(() => {
         if (!shippingAddress.address) {
             navigate('/shipping');
@@ -28,7 +31,8 @@ export default function PaymentMethodScreen() {
         ctxDispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethodName });
         localStorage.setItem('paymentMethod', paymentMethodName);
         navigate('/placeorder');
-    };
+    }
+
     return (
         <div>
             <CheckoutSteps>step1 step2 step3</CheckoutSteps>
@@ -62,5 +66,5 @@ export default function PaymentMethodScreen() {
                 </Form>
             </div>
         </div>
-  )
+    )
 }

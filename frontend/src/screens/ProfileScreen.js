@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import { Store } from '../store';
 import { getError } from '../utilies';
 
+
 const reducer = (state, action) => {
     switch (action.type) {
         case 'UPDATE_REQUEST':
@@ -21,6 +22,7 @@ const reducer = (state, action) => {
 };
 
 export default function ProfileScreen() {
+
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
     const [name, setName] = useState(userInfo.name);
@@ -32,7 +34,7 @@ export default function ProfileScreen() {
         loadingUpdate: false,
     });
 
-    const submitHandler = async (e) => {  
+    const submitHandler = async (e) => {
         e.preventDefault();
         try {
             const { data } = await axios.put('/api/user/profile', {
@@ -91,3 +93,4 @@ export default function ProfileScreen() {
         </div>
     );
 }
+

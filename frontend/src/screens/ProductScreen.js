@@ -1,4 +1,4 @@
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
@@ -9,8 +9,8 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from "react-helmet-async";
-import {getError} from '../utilies';
-import {Store} from '../store';
+import { getError } from '../utilies';
+import { Store } from '../store';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const params = useParams();
     const { slug } = params;
 
@@ -49,22 +49,22 @@ function ProductScreen() {
         fetchData();
     }, [slug]);
 
-const {state,dispatch:ctxDispatch}=useContext(Store);
-const {cart}=state;
-const addToCartHandler=async()=>{
-    const existItem=cart.cartItems.find((x)=>x._id===product._id);
-    const quantity=existItem ? existItem.quantity+1:1;
-    const {data} = await axios.get(`/api/products/${product._id}`);
-    if(data.countInStock<quantity){
-        window.alert('Sorry. Product is Out of Stock');
-        return;
-    }
- ctxDispatch ({
-     type:'CART_ADD_ITEM',
-     payload:{...product,quantity},
-    });
-    navigate('/cart');
-};
+    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const { cart } = state;
+    const addToCartHandler = async () => {
+        const existItem = cart.cartItems.find((x) => x._id === product._id);
+        const quantity = existItem ? existItem.quantity + 1 : 1;
+        const { data } = await axios.get(`/api/products/${product._id}`);
+        if (data.countInStock < quantity) {
+            window.alert('Sorry. Product is Out of Stock');
+            return;
+        }
+        ctxDispatch({
+            type: 'CART_ADD_ITEM',
+            payload: { ...product, quantity },
+        });
+        navigate('/cart');
+    };
     return loading ? (
         <div>Loading...</div>
     ) : error ? (
@@ -82,14 +82,14 @@ const addToCartHandler=async()=>{
                     <ListGroup variant="flush">
                         <ListGroup.Item>
                             <Helmet>
-                            <title>{product.name}</title>
+                                <title>{product.name}</title>
                             </Helmet>
                             <h1>{product.name}</h1>
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Rating>
+                            <Rating
                                 rating={product.rating}
-                                numReviews={product.numReviews}
+                                numReviews={product.numReviews}>
                             </Rating>
                         </ListGroup.Item>
                         <ListGroup.Item>

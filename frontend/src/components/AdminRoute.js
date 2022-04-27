@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom';
 import { Store } from '../store'
 
-export default function ProtectedRoute({children}) {
+export default function AdminRoute({children}) {
     const {state}=useContext(Store);
     const {userInfo}=state;
   return (
     <div>
-      userInfo ? children : <Navigate to='/signin' />;
+      userInfo && userInfo.isAdmin ? children : <Navigate to="/signin"></Navigate>
     </div>
   )
 }

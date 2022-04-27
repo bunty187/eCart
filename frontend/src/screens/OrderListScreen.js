@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react'
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
@@ -5,6 +6,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../store';
 import { getError } from '../utilies';
+import Button from 'react-bootstrap/Button';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -75,7 +77,7 @@ export default function OrderListScreen() {
                           <td>{order.createdAt.substring(0,10)}</td>
                           <td>{order.totalPrice.toFixed(2)}</td>
                           <td>{order.isPaid ? order.paidAt.substring(0,10): 'NO'}</td>
-                          <td>{order.isPaid ? order.paidAt.substring(0,10): 'NO'}</td>
+                          {/* <td>{order.isPaid ? order.paidAt.substring(0,10): 'NO'}</td> */}
                           <td>
                               {order.isDelivered ? order.deliveredAt.substring(0,10) : 'NO'}
                           </td>
